@@ -36,14 +36,14 @@ public class Board {
         }
         
         // initialize black pieces
-        board[0][0] = new Spot(0, 0, null);
-        board[0][1] = new Spot(0, 1, null);
-        board[0][2] = new Spot(0, 2, new Knight(true, null));
-        board[0][3] = new Spot(0, 3, new Knight(true, null));
-        board[0][4] = new Spot(0, 4, new Knight(true, new Ball()));
-        board[0][5] = new Spot(0, 5, new Knight(true, null));
-        board[0][6] = new Spot(0, 6, null);
-        board[0][7] = new Spot(0, 7, null);
+        board[0][0] = new Spot(7, 0, null);
+        board[0][1] = new Spot(7, 1, null);
+        board[0][2] = new Spot(7, 2, new Knight(true, null));
+        board[0][3] = new Spot(7, 3, new Knight(true, null));
+        board[0][4] = new Spot(7, 4, new Knight(true, new Ball()));
+        board[0][5] = new Spot(7, 5, new Knight(true, null));
+        board[0][6] = new Spot(7, 6, null);
+        board[0][7] = new Spot(7, 7, null);
         
     }
     
