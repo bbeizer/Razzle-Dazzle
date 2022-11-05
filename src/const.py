@@ -1,0 +1,7 @@
+# Screen Dimensions
+WIDTH = 800
+HEIGHT = 800
+
+COLUMNS = 8
+ROWS = 8
+SQSIZE = WIDTH // COLUMNS
