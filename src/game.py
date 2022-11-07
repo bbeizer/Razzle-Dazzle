@@ -1,14 +1,18 @@
 import pygame
+from board import Board
+
 
 from const import *
 
 class Game:
 
     def __init__(self):
-        pass
+        self.board = Board()
 
+    #show methods
+    
     def show_bg(self, surface):
-        
+
         for row in range(ROWS):
             for col in range(COLUMNS):
                 if (row + col) % 2 == 0:
@@ -20,6 +24,19 @@ class Game:
                 rect = (col * SQSIZE, row * SQSIZE, SQSIZE, SQSIZE)
                 # blit
                 pygame.draw.rect(surface, color, rect)
+
+    
+    def show_pieces(self, surface):
+         for row in range(ROWS):
+            for col in range(COLUMNS):
+                # is there a piece?
+                    if self.board.squares[row][col].has_piece():
+                        piece = self.board.squares[row][col].piece
+                        img = pygame.image.load(piece.texture)
+                        img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
+                        piece.texture_rect = img.get_rect(center=img_center)
+                        surface.blit(img, piece.texture_rect)
+    
 
 
 
