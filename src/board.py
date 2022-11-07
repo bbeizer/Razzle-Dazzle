@@ -1,29 +1,30 @@
 from const import *
 from square import Square
+from piece import *
 
 class Board:
-
-    # Spot[][] board;
   
     def __init__(self):
-        self.squares = []
+        self.board = [[0,0,0,0,0,0,0,0,0] for col in range(COLUMNS)]
+        self._create()
 
     def _create(self):
         
-        square = self.square
-
-        #creating an empty board
-        self.squares = [[0,0,0,0,0,0,0,0,0] for col in range(COLUMNS)]
+        board = self.board
         
         for row in range(ROWS):
             for col in range (COLUMNS):
-                square[row][col] = Square(row,col)
+                board[row][col] = Square(row,col)
 
 
 
 
-    def _add_piece(self):
-        pass
+    def _add_piece(self, color):
+        if row_piece = 7 if color == 'white' else 0
+
+        for col in range(2,6):
+            self.board[row_piece][col] = Square(row_piece, col, Knight(color))
+        
 #     public Board(){	
 #     	this.board = new Spot[8][8];
 #         this.resetBoard();
