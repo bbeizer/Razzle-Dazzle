@@ -13,7 +13,7 @@ class Piece:
 		self.texture_rect = texture_rect
 
 
-	def set_texture(self, size=128):
+	def set_texture(self, size=80):
 		self.texture = os.path.join(f'assets/images/img-{size}px/{self.color}_piece.png')
 
 		pass
