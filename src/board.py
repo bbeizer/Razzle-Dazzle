@@ -1,4 +1,6 @@
+import pygame
 from const import *
+from move import Move
 from square import Square
 from ball import Ball
 from piece import *
@@ -53,8 +55,25 @@ class Board:
                 possible_move_row, possible_move_col = possible_move
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares[possible_move_row][possible_move_col].is_empty():
-                        # create new move
-                        pass
+                        # create squares of new move
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col) 
+                        # creating move
+                        move = Move(initial, final)
+                        # append new valid move
+                        piece.add_move(move)
+        
+        if isinstance(piece, Knight):
+            knight_moves()
+        
+        elif isinstance(piece, Rook):
+            pass
+
+        elif isinstance(piece, Bishop):
+            pass
+
+        elif isinstance(piece, Bishop):
+            pass
 
 
 

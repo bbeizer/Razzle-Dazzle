@@ -15,8 +15,9 @@ class Piece:
 
 	def set_texture(self, size=80):
 		self.texture = os.path.join(f'assets/images/img-{size}px/{self.color}_piece.png')
-
-		pass
+    
+	def add_move(self, move):
+		self.moves.append(move)
 
 
 class Knight(Piece):
