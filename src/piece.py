@@ -21,8 +21,8 @@ class Piece:
 
 class Knight(Piece):
 	
-	def __init__(self, color):
-		super().__init__('Knight', color)
+	def __init__(self, color, ball):
+		super().__init__('Knight', color, ball)
 
 class Bishop(Piece):
 

@@ -8,5 +8,13 @@ class Square:
 
 	def has_piece(self):
 		return self.piece != None
-
 	
+	def is_empty(self):
+		return not self.has_piece()
+
+	@staticmethod
+	def in_range(*args):
+		for arg in args:
+			if arg <0 or arg>7:
+				return False
+		return True

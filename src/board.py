@@ -22,15 +22,39 @@ class Board:
 
     def _add_pieces(self, color):
         if color == 'white':
-            self.squares[7][2] = Square(7, 2, Knight(color))
-            self.squares[7][3] = Square(7, 3, Knight(color))
-            self.squares[7][4] = Square(7, 4, Knight(color))
-            self.squares[7][5] = Square(7, 5, Knight(color))
+            self.squares[7][2] = Square(7, 2, Knight(color, None))
+            self.squares[7][3] = Square(7, 3, Knight(color, Ball()))
+            self.squares[7][4] = Square(7, 4, Knight(color, None))
+            self.squares[7][5] = Square(7, 5, Knight(color, None))
         else:
-            self.squares[0][2] = Square(7, 2, Knight(color))
-            self.squares[0][3] = Square(7, 3, Knight(color))
-            self.squares[0][4] = Square(7, 4, Knight(color))
-            self.squares[0][5] = Square(7, 5, Knight(color))
+            self.squares[0][2] = Square(7, 2, Knight(color, None))
+            self.squares[0][3] = Square(7, 3, Knight(color, None))
+            self.squares[0][4] = Square(7, 4, Knight(color, Ball()))
+            self.squares[0][5] = Square(7, 5, Knight(color, None))
+
+    def calc_moves(self, piece, row, col, bool=True):
+        '''
+            Calculate all the possible (valid) moves of pieces with Knight/Rook/Bishop/Queen type movement
+        '''
+        def knight_moves():
+            # 8 possible moves
+            possible_moves = [
+                (row-2, col+1),
+                (row-1, col+2),
+                (row+1, col+2),
+                (row+2, col+1),
+                (row+2, col-1),
+                (row+1, col-2),
+                (row-1, col-2),
+                (row-2, col-1),
+            ]
+            for possible_move in possible_moves:
+                
+                possible_move_row, possible_move_col = possible_move
+                if Square.in_range(possible_move_row, possible_move_col):
+                    if self.squares[possible_move_row][possible_move_col].is_empty():
+                        # create new move
+                        pass
 
 
 
