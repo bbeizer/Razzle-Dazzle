@@ -22,6 +22,16 @@ class Piece:
 	def clear_moves(self):
 		self.moves = []
 
+	def has_ball(self):
+		return self.ball != None
+
+	def pass_ball(self, receiver):
+		if self.has_ball():
+			receiver.ball = self.ball
+			self.ball = None
+
+
+
 
 class Knight(Piece):
 	

@@ -51,5 +51,18 @@ class Game:
                 # rect
                 rect = (move.final.col * SQSIZE, move.final.row * SQSIZE, SQSIZE, SQSIZE)
                 #blit
-                pygame.draw.rect(surface, color, rect)    
+                pygame.draw.rect(surface, color, rect)
+
+    def show_ball(self, surface):
+        for row in range(ROWS):
+            for col in range(COLUMNS):
+            # is there a ball?
+                    if self.board.squares[row][col].has_piece():
+                        piece = self.board.squares[row][col].piece
+                        if piece.has_ball() == True:
+                            ball = piece.ball
+                            img = pygame.image.load(ball.texture)
+                            img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
+                            piece.texture_rect = img.get_rect(center=img_center)
+                            surface.blit(img, piece.texture_rect)
     
