@@ -1,6 +1,7 @@
 import pygame
 from board import Board
 from dragger import Dragger
+from config import Config
 
 
 from const import *
@@ -10,6 +11,7 @@ class Game:
     def __init__(self):
         self.board = Board()
         self.dragger = Dragger()
+        self.config = Config()
 
     #show methods
     def show_bg(self, surface):
@@ -77,3 +79,9 @@ class Game:
                             img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
                             piece.ball.texture_rect = img.get_rect(center=img_center)
                             surface.blit(img, piece.ball.texture_rect)
+
+    def play_sound(self, move):
+        if move:
+            self.config.move_sound.play()
+        else:
+            self.config.pass_sound.play()

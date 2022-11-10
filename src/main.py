@@ -49,7 +49,9 @@ class Main:
                     #checks if square has piece
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
+
                         # if piece doesn't have ball, move the piece
+                        move_action = piece.has_ball()
                         if piece.has_ball() == False:
                             board.calc_moves(piece, clicked_row, clicked_col)
                             dragger.save_initial(event.pos)
@@ -99,6 +101,8 @@ class Main:
                             move = Move(initial, final)
                             if board.valid_move(dragger.piece, move):
                                 board.move(dragger.piece, move)
+                                #plays move sound
+                                game.play_sound(True)
                                 # if a piece moves, the balls potential passes needs to be reset
                                 # show methods
                                 game.show_bg(screen)
@@ -112,6 +116,8 @@ class Main:
                             piece = initial.piece
                             if board.valid_pass(dragger.ball, a_pass):
                                 board.pass_ball(a_pass)
+                                # plays pass sound 
+                                game.play_sound(False)
                                 # show methods
                                 game.show_bg(screen)
                                 game.show_pieces(screen)
