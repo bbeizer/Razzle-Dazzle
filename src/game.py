@@ -46,7 +46,7 @@ class Game:
             # loop through valid moves
             for move in piece.moves:
                 #color
-                color = '#C86464' if (move.final.row + move.final.col) % 2 == 0 else '#C84646'
+                color = '#C86464' if (move.final.row + move.final.col) % 2 == 0 else '#C86464'
                 # rect
                 rect = (move.final.col * SQSIZE, move.final.row * SQSIZE, SQSIZE, SQSIZE)
                 #blit
@@ -58,7 +58,7 @@ class Game:
             # loop through valid moves
             for a_pass in ball.passes:
                 #color
-                color = '#C86464' if (a_pass.final.row + a_pass.final.col) % 2 == 0 else '#C84646'
+                color = '#FFFF00' if (a_pass.final.row + a_pass.final.col) % 2 == 0 else '#FFFF00'
                 # rect
                 rect = (a_pass.final.col * SQSIZE, a_pass.final.row * SQSIZE, SQSIZE, SQSIZE)
                 #blit

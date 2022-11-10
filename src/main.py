@@ -5,6 +5,7 @@ from const import *
 from game import Game 
 from square import Square
 from move import Move
+from ball import Ball
 
 class Main:
     
@@ -98,6 +99,7 @@ class Main:
                             move = Move(initial, final)
                             if board.valid_move(dragger.piece, move):
                                 board.move(dragger.piece, move)
+                                # if a piece moves, the balls potential passes needs to be reset
                                 # show methods
                                 game.show_bg(screen)
                                 game.show_pieces(screen)
@@ -118,6 +120,7 @@ class Main:
                             # also this is the method that released a piece
 
                         dragger.undrag_piece()
+                        dragger.undrag_ball()
                 # exit the application
                 elif event.type == pygame.QUIT:
                     pygame.quit()

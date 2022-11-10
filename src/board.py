@@ -52,13 +52,9 @@ class Board:
         # console board move update
         initial_piece = self.squares[initial.row][initial.col].piece
         final_piece = self.squares[final.row][final.col].piece
-        # clears the potential destination for the ball
-        initial_piece.ball.clear_passes()
         initial_piece.ball = None
         # the actuall pass of the ball
         final_piece.ball = Ball()
-        # sets that the piece actually passes the ball
-        initial_piece.passed = True
         # set last move
         self.last_pass = a_pass
 
@@ -71,6 +67,9 @@ class Board:
         return move in piece.moves
 
     def calc_passes(self, piece, row, col, bool=True):
+        # every time this is called, the balls potential passes gets cleared
+        ball = piece.ball
+        ball.clear_passes()
         '''
             calculates all the possible valid passes a piece can make
         '''
