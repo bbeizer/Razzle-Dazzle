@@ -5,7 +5,6 @@ from const import *
 from game import Game 
 from square import Square
 from move import Move
-from ball import Ball
 
 class Main:
     
@@ -51,7 +50,6 @@ class Main:
                         piece = board.squares[clicked_row][clicked_col].piece
 
                         # if piece doesn't have ball, move the piece
-                        move_action = piece.has_ball()
                         if piece.has_ball() == False:
                             board.calc_moves(piece, clicked_row, clicked_col)
                             dragger.save_initial(event.pos)
@@ -127,6 +125,16 @@ class Main:
 
                         dragger.undrag_piece()
                         dragger.undrag_ball()
+                    
+                # key press
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        game.reset()
+                        game = self.game
+                        board = self.game.board
+                        dragger = self.game.dragger
+        
+
                 # exit the application
                 elif event.type == pygame.QUIT:
                     pygame.quit()
