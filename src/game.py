@@ -69,13 +69,11 @@ class Game:
         for row in range(ROWS):
             for col in range(COLUMNS):
             # is there a ball?
-                    if self.board.squares[row][col].has_piece():
-                        piece = self.board.squares[row][col].piece
-                        if piece.has_ball() == True:
-                            ball = piece.ball
-                            img = pygame.image.load(ball.texture)
+                if self.board.squares[row][col].has_piece():
+                    piece = self.board.squares[row][col].piece
+                    if piece.has_ball():
+                        if piece.ball is not self.dragger.ball:
+                            img = pygame.image.load(piece.ball.texture)
                             img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
-                            piece.texture_rect = img.get_rect(center=img_center)
-                            surface.blit(img, piece.texture_rect)
-
-    
+                            piece.ball.texture_rect = img.get_rect(center=img_center)
+                            surface.blit(img, piece.ball.texture_rect)

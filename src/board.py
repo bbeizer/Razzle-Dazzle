@@ -50,11 +50,8 @@ class Board:
         initial = a_pass.initial
         final = a_pass.final
         # console board move update
-        initial_piece = self.squares[initial.row][initial.col].piece
-        final_piece = self.squares[final.row][final.col].piece
-        initial_piece.ball = None
-        # the actuall pass of the ball
-        final_piece.ball = Ball()
+        self.squares[initial.row][initial.col].piece.ball = None
+        self.squares[final.row][final.col].piece.ball = Ball()
         # set last move
         self.last_pass = a_pass
 
