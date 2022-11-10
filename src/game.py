@@ -52,17 +52,17 @@ class Game:
                 #blit
                 pygame.draw.rect(surface, color, rect)
 
-    # def show_passes(self, surface):
-    #     if self.dragger.dragging:
-    #         piece = self.dragger.piece
-    #         # loop through valid moves
-    #         for a_pass in piece.passes:
-    #             #color
-    #             color = '#C86464' if (a_pass.final.row + a_pass.final.col) % 2 == 0 else '#C84646'
-    #             # rect
-    #             rect = (a_pass.final.col * SQSIZE, a_pass.final.row * SQSIZE, SQSIZE, SQSIZE)
-    #             #blit
-    #             pygame.draw.rect(surface, color, rect)
+    def show_passes(self, surface):
+        if self.dragger.dragging:
+            ball = self.dragger.ball
+            # loop through valid moves
+            for a_pass in ball.passes:
+                #color
+                color = '#C86464' if (a_pass.final.row + a_pass.final.col) % 2 == 0 else '#C84646'
+                # rect
+                rect = (a_pass.final.col * SQSIZE, a_pass.final.row * SQSIZE, SQSIZE, SQSIZE)
+                #blit
+                pygame.draw.rect(surface, color, rect)
 
 
     def show_ball(self, surface):

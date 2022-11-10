@@ -16,13 +16,25 @@ class Dragger:
     # blit methods 
     def update_blit(self, surface):
         #texture
-        self.piece.set_texture(size=80)
-        #img
-        img = pygame.image.load(self.piece.texture)
-        #rect
-        img_center = (self.mouseX, self.mouseY)
-        self.piece.texture_rect = img.get_rect(center=img_center)
-        surface.blit(img, self.piece.texture_rect)    
+        # for piece
+        if self.piece != None:
+            self.piece.set_texture(size=80)
+            #img
+            img = pygame.image.load(self.piece.texture)
+            #rect
+            img_center = (self.mouseX, self.mouseY)
+            self.piece.texture_rect = img.get_rect(center=img_center)
+            surface.blit(img, self.piece.texture_rect)
+        # for ball 
+        else:
+            self.ball.set_texture(size=80)
+            #img
+            img = pygame.image.load(self.ball.texture)
+            #rect
+            img_center = (self.mouseX, self.mouseY)
+            self.ball.texture_rect = img.get_rect(center=img_center)
+            surface.blit(img, self.ball.texture_rect) 
+
     
     #other methods
     def update_mouse(self, pos):
@@ -36,16 +48,16 @@ class Dragger:
         self.piece = piece
         self.dragging = True
 
+    def undrag_piece(self):
+        self.piece = None
+        self.dragging = False
+
     def drag_ball(self, ball):
         self.ball = ball
         self.dragging = True
-    
-    def drag_ball(self, ball):
-        self.ball = None
-        self.dragging = False
 
-    def undrag_piece(self):
-        self.piece = None
+    def undrag_ball(self):
+        self.ball = None
         self.dragging = False
 
 

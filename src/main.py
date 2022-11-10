@@ -24,10 +24,15 @@ class Main:
         while True:
             # show methods
             game.show_bg(screen)
-            game.show_moves(screen)
+            
+            # show passes or moves depending on what the dragger has
+            if dragger.piece != None:
+                game.show_moves(screen)
+            else:
+                game.show_passes(screen)
+            
             game.show_pieces(screen)
             game.show_ball(screen)
-            #game.show_passes(screen)
             
             if dragger.dragging:
                 dragger.update_blit(screen)
@@ -43,28 +48,41 @@ class Main:
                     #checks if square has piece
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
+                        # if piece doesn't have ball, move the piece
                         if piece.has_ball() == False:
                             board.calc_moves(piece, clicked_row, clicked_col)
                             dragger.save_initial(event.pos)
                             dragger.drag_piece(piece)
+                            #show methods
+                            game.show_bg(screen)
+                            game.show_moves(screen)
+                            game.show_pieces(screen)
+                            game.show_ball(screen)
+                        # move the ball
                         else:
+                            ball = piece.ball
                             board.calc_passes(piece, clicked_row, clicked_col)
-                        #show methods
-                        game.show_bg(screen)
-                        game.show_moves(screen)
-                        game.show_pieces(screen)
-                        game.show_ball(screen)
-                        #game.show_passes(screen)
+                            dragger.save_initial(event.pos)
+                            dragger.drag_ball(ball)
+                            # show methods 
+                            game.show_bg(screen)
+                            game.show_passes(screen)
+                            game.show_pieces(screen)
+                            game.show_ball(screen)
                 # mouse motion 
                 elif event.type == pygame.MOUSEMOTION:
                     if dragger.dragging:
                         dragger.update_mouse(event.pos)
                         #show methods
                         game.show_bg(screen)
-                        game.show_moves(screen)
+
+                        if dragger.piece != None:
+                            game.show_moves(screen)
+                        else:
+                            game.show_passes(screen)
+
                         game.show_pieces(screen)
                         game.show_ball(screen)
-                        #game.show_passes(screen)
                         dragger.update_blit(screen)
                 # click release
                 elif event.type == pygame.MOUSEBUTTONUP:
@@ -72,28 +90,31 @@ class Main:
                         dragger.update_mouse(event.pos)
                         release_row = dragger.mouseY // SQSIZE
                         release_col = dragger.mouseX // SQSIZE
-                        #create possible move / pass
+                        #create possible move / pass squares
                         initial = Square(dragger.initial_row, dragger.initial_col)
                         final = Square(release_row, release_col)
-                        move = Move(initial, final)
-                        a_pass = APass(initial, final)
-                        if board.valid_move(dragger.piece, move):
-                            board.move(dragger.piece, move)
-                            # show methods
-                            game.show_bg(screen)
-                            game.show_pieces(screen)
-                            game.show_ball(screen)
+                        # if the dragger has a piece execute the if
+                        if dragger.piece != None:
+                            move = Move(initial, final)
+                            if board.valid_move(dragger.piece, move):
+                                board.move(dragger.piece, move)
+                                # show methods
+                                game.show_bg(screen)
+                                game.show_pieces(screen)
+                                game.show_ball(screen)
                             #game.show_passes(screen)
                             # dont need to show moves because we do that in other methods 
-                            # also this is the method that released a piece
-                        if board.valid_pass(dragger.piece, a_pass):
-                            board.pass_ball(dragger.piece, a_pass)
-                            # show methods
-                            game.show_bg(screen)
-                            game.show_pieces(screen)
-                            game.show_ball(screen)
-                            #game.show_passes(screen)
-                            # dont need to show moves because we do that in other methods 
+                        # if the dragger has a ball
+                        else:
+                            a_pass = APass(initial, final)
+                            piece = initial.piece
+                            if board.valid_pass(dragger.ball, a_pass):
+                                board.pass_ball(a_pass)
+                                # show methods
+                                game.show_bg(screen)
+                                game.show_pieces(screen)
+                                game.show_ball(screen)
+                            # dont need to show moves or passes because this is release the mouse
                             # also this is the method that released a piece
 
                         dragger.undrag_piece()

@@ -46,25 +46,26 @@ class Board:
         # set last move
         self.last_move = move
 
-    def pass_ball(self, piece, a_pass):
+    def pass_ball(self, a_pass):
         initial = a_pass.initial
         final = a_pass.final
         # console board move update
         initial_piece = self.squares[initial.row][initial.col].piece
         final_piece = self.squares[final.row][final.col].piece
+        # clears the potential destination for the ball
+        initial_piece.ball.clear_passes()
         initial_piece.ball = None
+        # the actuall pass of the ball
         final_piece.ball = Ball()
-        # move the piece
-        piece.passed = True
-        # clear valid moves for piece
-        piece.clear_passes()
+        # sets that the piece actually passes the ball
+        initial_piece.passed = True
         # set last move
         self.last_pass = a_pass
 
         pass
 
-    def valid_pass(self, piece, a_pass):
-        return a_pass in piece.passes
+    def valid_pass(self, ball, a_pass):
+        return a_pass in ball.passes
     
     def valid_move(self, piece, move):
         return move in piece.moves
@@ -78,21 +79,23 @@ class Board:
                 row_incr, col_incr = step
                 possible_pass_row = row 
                 possible_pass_col = col
-                for x in range(7):
+                for i in range(7):
                     possible_pass_row += row_incr
                     possible_pass_col += col_incr
                     if Square.in_range(possible_pass_row, possible_pass_col):
                         if self.squares[possible_pass_row][possible_pass_col].has_piece():
-                            # if there is an opponent piece in the way of a pass, you move on to another potential pass
+                            # if there is an opponent piece is blocking a pass, you move on to another potential pass
                             if self.squares[possible_pass_row][possible_pass_col].piece.color is not piece.color:
-                                print("miss")
                                 break
+                            # add the pass to the the potential passes
                             else:
+                                ball = piece.ball
                                 initial = Square(row, col)
                                 final  = Square(possible_pass_row, possible_pass_col)
                                 a_pass = APass(initial, final)
-                                piece.add_pass(a_pass)
-                                print(possible_pass_row, possible_pass_col)
+                                ball.add_pass(a_pass)
+                    else:
+                        break
 
                             
                         

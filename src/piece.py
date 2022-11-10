@@ -9,8 +9,6 @@ class Piece:
 		self.texture = texture
 		self.moves = []
 		self.moved = False
-		self.passes = []
-		self.passed = False
 		self.set_texture()
 		self.texture_rect = texture_rect
 
@@ -20,9 +18,6 @@ class Piece:
     
 	def add_move(self, move):
 		self.moves.append(move)
-
-	def add_pass(self, a_pass):
-		self.passes.append(a_pass)
 
 	def clear_moves(self):
 		self.moves = []
