@@ -20,7 +20,6 @@ class Game:
                     color = (234,235,200) # light green
                 else:
                     color = (119,154, 88) # dark green
-
                 # rect
                 rect = (col * SQSIZE, row * SQSIZE, SQSIZE, SQSIZE)
                 # blit
@@ -53,6 +52,19 @@ class Game:
                 #blit
                 pygame.draw.rect(surface, color, rect)
 
+    # def show_passes(self, surface):
+    #     if self.dragger.dragging:
+    #         piece = self.dragger.piece
+    #         # loop through valid moves
+    #         for a_pass in piece.passes:
+    #             #color
+    #             color = '#C86464' if (a_pass.final.row + a_pass.final.col) % 2 == 0 else '#C84646'
+    #             # rect
+    #             rect = (a_pass.final.col * SQSIZE, a_pass.final.row * SQSIZE, SQSIZE, SQSIZE)
+    #             #blit
+    #             pygame.draw.rect(surface, color, rect)
+
+
     def show_ball(self, surface):
         for row in range(ROWS):
             for col in range(COLUMNS):
@@ -65,4 +77,5 @@ class Game:
                             img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
                             piece.texture_rect = img.get_rect(center=img_center)
                             surface.blit(img, piece.texture_rect)
+
     

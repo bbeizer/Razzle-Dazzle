@@ -6,6 +6,7 @@ class Dragger:
     
     def __init__(self):
         self.piece = None
+        self.ball = None
         self.dragging = False
         self.mouseX = 0
         self.mouseY = 0
@@ -35,7 +36,16 @@ class Dragger:
         self.piece = piece
         self.dragging = True
 
+    def drag_ball(self, ball):
+        self.ball = ball
+        self.dragging = True
+    
+    def drag_ball(self, ball):
+        self.ball = None
+        self.dragging = False
+
     def undrag_piece(self):
         self.piece = None
         self.dragging = False
+
 

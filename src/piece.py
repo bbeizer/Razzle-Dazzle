@@ -9,6 +9,8 @@ class Piece:
 		self.texture = texture
 		self.moves = []
 		self.moved = False
+		self.passes = []
+		self.passed = False
 		self.set_texture()
 		self.texture_rect = texture_rect
 
@@ -19,16 +21,18 @@ class Piece:
 	def add_move(self, move):
 		self.moves.append(move)
 
+	def add_pass(self, a_pass):
+		self.passes.append(a_pass)
+
 	def clear_moves(self):
 		self.moves = []
+
+	def clear_passes(self):
+		self.passes = []
 
 	def has_ball(self):
 		return self.ball != None
 
-	def pass_ball(self, receiver):
-		if self.has_ball():
-			receiver.ball = self.ball
-			self.ball = None
 
 
 

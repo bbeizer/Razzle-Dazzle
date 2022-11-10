@@ -1,5 +1,6 @@
 import pygame 
 import sys
+from a_pass import APass
 from const import *
 from game import Game 
 from square import Square
@@ -26,6 +27,7 @@ class Main:
             game.show_moves(screen)
             game.show_pieces(screen)
             game.show_ball(screen)
+            #game.show_passes(screen)
             
             if dragger.dragging:
                 dragger.update_blit(screen)
@@ -45,11 +47,14 @@ class Main:
                             board.calc_moves(piece, clicked_row, clicked_col)
                             dragger.save_initial(event.pos)
                             dragger.drag_piece(piece)
+                        else:
+                            board.calc_passes(piece, clicked_row, clicked_col)
                         #show methods
                         game.show_bg(screen)
                         game.show_moves(screen)
                         game.show_pieces(screen)
                         game.show_ball(screen)
+                        #game.show_passes(screen)
                 # mouse motion 
                 elif event.type == pygame.MOUSEMOTION:
                     if dragger.dragging:
@@ -59,6 +64,7 @@ class Main:
                         game.show_moves(screen)
                         game.show_pieces(screen)
                         game.show_ball(screen)
+                        #game.show_passes(screen)
                         dragger.update_blit(screen)
                 # click release
                 elif event.type == pygame.MOUSEBUTTONUP:
@@ -66,17 +72,27 @@ class Main:
                         dragger.update_mouse(event.pos)
                         release_row = dragger.mouseY // SQSIZE
                         release_col = dragger.mouseX // SQSIZE
-                        
-                        #create possible move
+                        #create possible move / pass
                         initial = Square(dragger.initial_row, dragger.initial_col)
-                        final = Square(release_row, release_col )
+                        final = Square(release_row, release_col)
                         move = Move(initial, final)
+                        a_pass = APass(initial, final)
                         if board.valid_move(dragger.piece, move):
                             board.move(dragger.piece, move)
                             # show methods
                             game.show_bg(screen)
                             game.show_pieces(screen)
                             game.show_ball(screen)
+                            #game.show_passes(screen)
+                            # dont need to show moves because we do that in other methods 
+                            # also this is the method that released a piece
+                        if board.valid_pass(dragger.piece, a_pass):
+                            board.pass_ball(dragger.piece, a_pass)
+                            # show methods
+                            game.show_bg(screen)
+                            game.show_pieces(screen)
+                            game.show_ball(screen)
+                            #game.show_passes(screen)
                             # dont need to show moves because we do that in other methods 
                             # also this is the method that released a piece
 
