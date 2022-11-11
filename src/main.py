@@ -14,14 +14,14 @@ class Main:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption('Razzle Dazzle')
         self.game = Game()
-        
+
     def mainloop(self):
         
         game = self.game
         screen = self.screen
         board = self.game.board
         dragger = self.game.dragger
-        
+        did_win = False
         while True:
             # show methods
             game.show_bg(screen)
@@ -34,10 +34,10 @@ class Main:
             
             game.show_pieces(screen)
             game.show_ball(screen)
+            game.show_win(screen, game.current_player, did_win)
             
             if dragger.dragging:
                 dragger.update_blit(screen)
-
 
             for event in pygame.event.get():
 
@@ -62,6 +62,7 @@ class Main:
                                     game.show_moves(screen)
                                     game.show_pieces(screen)
                                     game.show_ball(screen)
+                                    game.show_win(screen, game.current_player, did_win)
                             # move the ball
                             else:
                                 ball = piece.ball
@@ -73,6 +74,7 @@ class Main:
                                 game.show_passes(screen)
                                 game.show_pieces(screen)
                                 game.show_ball(screen)
+                                game.show_win(screen, game.current_player, did_win)
                 # mouse motion 
                 elif event.type == pygame.MOUSEMOTION:
                     if dragger.dragging:
@@ -87,6 +89,7 @@ class Main:
 
                         game.show_pieces(screen)
                         game.show_ball(screen)
+                        game.show_win(screen, game.current_player, did_win)
                         dragger.update_blit(screen)
                 # click release
                 elif event.type == pygame.MOUSEBUTTONUP:
@@ -109,6 +112,7 @@ class Main:
                                 game.show_bg(screen)
                                 game.show_pieces(screen)
                                 game.show_ball(screen)
+                                game.show_win(screen, game.current_player, did_win)
                             #game.show_passes(screen)
                             # dont need to show moves because we do that in other methods 
                         # if the dragger has a ball
@@ -119,10 +123,13 @@ class Main:
                                 board.pass_ball(a_pass)
                                 # plays pass sound 
                                 game.play_sound(False)
+                                if final.row == 0 and game.current_player == 'White' or final.row == 7 and game.current_player == 'Black':
+                                    did_win = True
                                 # show methods
                                 game.show_bg(screen)
                                 game.show_pieces(screen)
                                 game.show_ball(screen)
+                                game.show_win(screen, game.current_player, did_win)
                             # dont need to show moves or passes because this is release the mouse
                             # also this is the method that released a piece
 
@@ -133,6 +140,7 @@ class Main:
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_r:
                         game.reset()
+                        did_win = False
                         game = self.game
                         board = self.game.board
                         dragger = self.game.dragger

@@ -9,10 +9,11 @@ from const import *
 class Game:
 
     def __init__(self):
-        self.current_player = 'white'
+        self.current_player = 'White'
         self.board = Board()
         self.dragger = Dragger()
         self.config = Config()
+        self.font = pygame.font.Font(None, 100)
 
     #show methods
     def show_bg(self, surface):
@@ -79,6 +80,11 @@ class Game:
                             img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
                             piece.ball.texture_rect = img.get_rect(center=img_center)
                             surface.blit(img, piece.ball.texture_rect)
+    
+    def show_win(self, surface, color, did_win):
+        if did_win == True:
+            msg= self.font.render(color+ " Wins!", True, '#000000')
+            surface.blit(msg, (201,400))
 
     def play_sound(self, move):
         if move:
@@ -87,10 +93,10 @@ class Game:
             self.config.pass_sound.play()
 
     def next_turn(self):
-        if self.current_player == 'white':
-            self.current_player = 'black'
+        if self.current_player == 'White':
+            self.current_player = 'Black'
         else:
-            self.current_player = 'white'
+            self.current_player = 'White'
 
     def reset(self):
         self.__init__()

@@ -12,8 +12,8 @@ class Board:
         self.squares = []
         self.squares = [[0,0,0,0,0,0,0,0,0] for col in range(COLUMNS)]
         self._create()
-        self._add_pieces('white')
-        self._add_pieces('black')
+        self._add_pieces('White')
+        self._add_pieces('Black')
         self.move_made = False
 
     def _create(self):  
@@ -22,7 +22,7 @@ class Board:
                 self.squares[row][col] = Square(row,col)
 
     def _add_pieces(self, color):
-        if color == 'white':
+        if color == 'White':
             self.squares[7][2] = Square(7, 2, Knight(color, Square(7, 2), None))
             self.squares[7][3] = Square(7, 3, Knight(color, Square(7, 3), Ball()))
             self.squares[7][4] = Square(7, 4, Knight(color, Square(7, 4), None))
