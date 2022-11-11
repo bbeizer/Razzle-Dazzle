@@ -50,29 +50,29 @@ class Main:
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
                         #if its the correct players turn
-                        #if piece.color == game.current_player:
-                        # if piece doesn't have ball, move the piece
-                        if piece.has_ball() == False:
-                            if board.move_made == True and piece.moved == True or board.move_made == False and piece.moved == False:
-                                board.calc_moves(piece, clicked_row, clicked_col)
+                        if piece.color == game.current_player:
+                            # if piece doesn't have ball, move the piece
+                            if piece.has_ball() == False:
+                                if board.move_made == True and piece.moved == True or board.move_made == False and piece.moved == False:
+                                    board.calc_moves(piece, clicked_row, clicked_col)
+                                    dragger.save_initial(event.pos)
+                                    dragger.drag_piece(piece)
+                                    #show methods
+                                    game.show_bg(screen)
+                                    game.show_moves(screen)
+                                    game.show_pieces(screen)
+                                    game.show_ball(screen)
+                            # move the ball
+                            else:
+                                ball = piece.ball
+                                board.calc_passes(piece, clicked_row, clicked_col)
                                 dragger.save_initial(event.pos)
-                                dragger.drag_piece(piece)
-                                #show methods
+                                dragger.drag_ball(ball)
+                                # show methods 
                                 game.show_bg(screen)
-                                game.show_moves(screen)
+                                game.show_passes(screen)
                                 game.show_pieces(screen)
                                 game.show_ball(screen)
-                        # move the ball
-                        else:
-                            ball = piece.ball
-                            board.calc_passes(piece, clicked_row, clicked_col)
-                            dragger.save_initial(event.pos)
-                            dragger.drag_ball(ball)
-                            # show methods 
-                            game.show_bg(screen)
-                            game.show_passes(screen)
-                            game.show_pieces(screen)
-                            game.show_ball(screen)
                 # mouse motion 
                 elif event.type == pygame.MOUSEMOTION:
                     if dragger.dragging:
