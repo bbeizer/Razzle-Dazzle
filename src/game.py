@@ -84,7 +84,9 @@ class Game:
     def show_win(self, surface, color, did_win):
         if did_win == True:
             msg= self.font.render(color+ " Wins!", True, '#000000')
-            surface.blit(msg, (201,400))
+            rect = (200, 400,400, 100)
+            pygame.draw.rect(surface, '#FFFFFF', rect)
+            surface.blit(msg, (200,420))
 
     def play_sound(self, move):
         if move:
