@@ -39,8 +39,12 @@ class Board:
         # console board move update
         self.squares[initial.row][initial.col].piece = None
         self.squares[final.row][final.col].piece = piece
+        piece.current_square = self.squares[final.row][final.col]
         # move the piece
-        piece.moved = True
+        if final != piece.initial_square:
+            piece.moved = True
+        else:
+            piece.moved = False
         # clear valid moves for piece
         piece.clear_moves()
 
@@ -91,21 +95,6 @@ class Board:
                     else:
                         break
 
-                            
-                        
-        # def blocked(row, col, piece_loc):
-        #     print(row)
-        #     print(col)
-        #     print(piece_loc)
-        #     return True
-        #     # for incr in piece_loc:
-        #     #     row_incr, col_incr = incr
-        #     #     inbetween_row = row + row_incr
-        #     #     inbetween_col = col + col_incr
-        #     #     if self.squares[inbetween_row][inbetween_col].has_piece():
-        #     #         return False
-        #     # return True
-
         straightline_passdirections([
             (-1, 1), # up-right
             (-1, -1), # up-left
@@ -126,29 +115,36 @@ class Board:
         '''
 
         def knight_moves():
-
-            # 8 possible moves
-            possible_moves = [
-                (row-2, col+1),
-                (row-1, col+2),
-                (row+1, col+2),
-                (row+2, col+1),
-                (row+2, col-1),
-                (row+1, col-2),
-                (row-1, col-2),
-                (row-2, col-1),
-            ]
-            for possible_move in possible_moves:
-                possible_move_row, possible_move_col = possible_move
-                if Square.in_range(possible_move_row, possible_move_col):
-                    if self.squares[possible_move_row][possible_move_col].is_empty():
-                        # create squares of new move
-                        initial = Square(row, col)
-                        final = Square(possible_move_row, possible_move_col) 
-                        # creating move
-                        move = Move(initial, final)
-                        # append new valid move
-                        piece.add_move(move)
+            
+            if piece.moved == True:
+                initial = Square(row, col)
+                home_row, home_col = piece.initial_square.row, piece.initial_square.col
+                home_square = Square(home_row, home_col)
+                home_move = Move(initial, home_square)
+                piece.add_move(home_move)
+            else:
+                # 8 possible moves
+                possible_moves = [
+                    (row-2, col+1),
+                    (row-1, col+2),
+                    (row+1, col+2),
+                    (row+2, col+1),
+                    (row+2, col-1),
+                    (row+1, col-2),
+                    (row-1, col-2),
+                    (row-2, col-1),
+                ]
+                for possible_move in possible_moves:
+                    possible_move_row, possible_move_col = possible_move
+                    if Square.in_range(possible_move_row, possible_move_col):
+                        if self.squares[possible_move_row][possible_move_col].is_empty():
+                            # create squares of new move
+                            initial = Square(row, col)
+                            final = Square(possible_move_row, possible_move_col) 
+                            # creating move
+                            move = Move(initial, final)
+                            # append new valid move
+                            piece.add_move(move)
         
         # takes pieces that move in a streight line and evaluates potential moves
         # will use this is I decide to allow user to change what kind of piece plays in 

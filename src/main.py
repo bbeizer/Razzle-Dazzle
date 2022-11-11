@@ -2,7 +2,8 @@ import pygame
 import sys
 from a_pass import APass
 from const import *
-from game import Game 
+from game import Game
+from piece import Piece 
 from square import Square
 from move import Move
 
@@ -49,28 +50,28 @@ class Main:
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
                         #if its the correct players turn
-                        if piece.color == game.current_player:
+                        #if piece.color == game.current_player:
                         # if piece doesn't have ball, move the piece
-                            if piece.has_ball() == False:
-                                board.calc_moves(piece, clicked_row, clicked_col)
-                                dragger.save_initial(event.pos)
-                                dragger.drag_piece(piece)
-                                #show methods
-                                game.show_bg(screen)
-                                game.show_moves(screen)
-                                game.show_pieces(screen)
-                                game.show_ball(screen)
-                            # move the ball
-                            else:
-                                ball = piece.ball
-                                board.calc_passes(piece, clicked_row, clicked_col)
-                                dragger.save_initial(event.pos)
-                                dragger.drag_ball(ball)
-                                # show methods 
-                                game.show_bg(screen)
-                                game.show_passes(screen)
-                                game.show_pieces(screen)
-                                game.show_ball(screen)
+                        if piece.has_ball() == False:
+                            board.calc_moves(piece, clicked_row, clicked_col)
+                            dragger.save_initial(event.pos)
+                            dragger.drag_piece(piece)
+                            #show methods
+                            game.show_bg(screen)
+                            game.show_moves(screen)
+                            game.show_pieces(screen)
+                            game.show_ball(screen)
+                        # move the ball
+                        else:
+                            ball = piece.ball
+                            board.calc_passes(piece, clicked_row, clicked_col)
+                            dragger.save_initial(event.pos)
+                            dragger.drag_ball(ball)
+                            # show methods 
+                            game.show_bg(screen)
+                            game.show_passes(screen)
+                            game.show_pieces(screen)
+                            game.show_ball(screen)
                 # mouse motion 
                 elif event.type == pygame.MOUSEMOTION:
                     if dragger.dragging:
@@ -126,7 +127,7 @@ class Main:
 
                         dragger.undrag_piece()
                         dragger.undrag_ball()
-                        game.next_turn()
+                        #game.next_turn()
                     
                 # key press
                 elif event.type == pygame.KEYDOWN:
@@ -135,6 +136,8 @@ class Main:
                         game = self.game
                         board = self.game.board
                         dragger = self.game.dragger
+                    elif event.key == pygame.K_n:
+                        Piece.set_initial_squares()
         
 
                 # exit the application
