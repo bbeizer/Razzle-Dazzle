@@ -145,9 +145,10 @@ class Main:
                         board = self.game.board
                         dragger = self.game.dragger
                     elif event.key == pygame.K_n:
-                        board.move_made = False
-                        Piece.set_initial_squares()
-                        game.next_turn()
+                        if did_win == False:
+                            board.move_made = False
+                            Piece.set_initial_squares()
+                            game.next_turn()
         
 
                 # exit the application
