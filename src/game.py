@@ -9,13 +9,13 @@ from const import *
 class Game:
 
     def __init__(self):
+        self.current_player = 'white'
         self.board = Board()
         self.dragger = Dragger()
         self.config = Config()
 
     #show methods
     def show_bg(self, surface):
-
         for row in range(ROWS):
             for col in range(COLUMNS):
                 if (row + col) % 2 == 0:
@@ -85,6 +85,12 @@ class Game:
             self.config.move_sound.play()
         else:
             self.config.pass_sound.play()
+
+    def next_turn(self):
+        if self.current_player == 'white':
+            self.current_player = 'black'
+        else:
+            self.current_player = 'white'
 
     def reset(self):
         self.__init__()

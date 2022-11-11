@@ -11,7 +11,7 @@ class Board:
     def __init__(self):
         self.squares = []
         self.squares = [[0,0,0,0,0,0,0,0,0] for col in range(COLUMNS)]
-        self.last_move = None
+
         self._create()
         self._add_pieces('white')
         self._add_pieces('black')
@@ -23,15 +23,15 @@ class Board:
 
     def _add_pieces(self, color):
         if color == 'white':
-            self.squares[7][2] = Square(7, 2, Knight(color, None))
-            self.squares[7][3] = Square(7, 3, Knight(color, Ball()))
-            self.squares[7][4] = Square(7, 4, Knight(color, None))
-            self.squares[7][5] = Square(7, 5, Knight(color, None))
+            self.squares[7][2] = Square(7, 2, Knight(color, Square(7, 2), None))
+            self.squares[7][3] = Square(7, 3, Knight(color, Square(7, 3), Ball()))
+            self.squares[7][4] = Square(7, 4, Knight(color, Square(7, 4), None))
+            self.squares[7][5] = Square(7, 5, Knight(color, Square(7, 5), None))
         else:
-            self.squares[0][2] = Square(7, 2, Knight(color, None))
-            self.squares[0][3] = Square(7, 3, Knight(color, None))
-            self.squares[0][4] = Square(7, 4, Knight(color, Ball()))
-            self.squares[0][5] = Square(7, 5, Knight(color, None))
+            self.squares[0][2] = Square(0, 2, Knight(color, Square(0,2), None))
+            self.squares[0][3] = Square(0, 3, Knight(color, Square(0,3), None))
+            self.squares[0][4] = Square(0, 4, Knight(color, Square(0,4), Ball()))
+            self.squares[0][5] = Square(0, 5, Knight(color, Square(0,5), None))
 
     def move(self, piece, move):
         initial = move.initial
@@ -43,8 +43,6 @@ class Board:
         piece.moved = True
         # clear valid moves for piece
         piece.clear_moves()
-        # set last move
-        self.last_move = move
 
     def pass_ball(self, a_pass):
         initial = a_pass.initial

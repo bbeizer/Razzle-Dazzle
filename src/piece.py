@@ -2,10 +2,11 @@ import os
 
 class Piece:
 
-	def __init__(self, name, color, ball=None, texture=None, texture_rect=None):
+	def __init__(self, name, color, current_square, ball=None, texture=None, texture_rect=None):
 		self.name = name
 		self.color = color
 		self.ball = ball
+		self.current_square = current_square
 		self.texture = texture
 		self.moves = []
 		self.moved = False
@@ -34,8 +35,8 @@ class Piece:
 
 class Knight(Piece):
 	
-	def __init__(self, color, ball):
-		super().__init__('Knight', color, ball)
+	def __init__(self, color, current_square, ball):
+		super().__init__('Knight', color, current_square, ball)
 
 class Bishop(Piece):
 
