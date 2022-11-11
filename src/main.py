@@ -53,14 +53,15 @@ class Main:
                         #if piece.color == game.current_player:
                         # if piece doesn't have ball, move the piece
                         if piece.has_ball() == False:
-                            board.calc_moves(piece, clicked_row, clicked_col)
-                            dragger.save_initial(event.pos)
-                            dragger.drag_piece(piece)
-                            #show methods
-                            game.show_bg(screen)
-                            game.show_moves(screen)
-                            game.show_pieces(screen)
-                            game.show_ball(screen)
+                            if board.move_made == True and piece.moved == True or board.move_made == False and piece.moved == False:
+                                board.calc_moves(piece, clicked_row, clicked_col)
+                                dragger.save_initial(event.pos)
+                                dragger.drag_piece(piece)
+                                #show methods
+                                game.show_bg(screen)
+                                game.show_moves(screen)
+                                game.show_pieces(screen)
+                                game.show_ball(screen)
                         # move the ball
                         else:
                             ball = piece.ball
@@ -127,7 +128,6 @@ class Main:
 
                         dragger.undrag_piece()
                         dragger.undrag_ball()
-                        #game.next_turn()
                     
                 # key press
                 elif event.type == pygame.KEYDOWN:
@@ -137,7 +137,9 @@ class Main:
                         board = self.game.board
                         dragger = self.game.dragger
                     elif event.key == pygame.K_n:
+                        board.move_made = False
                         Piece.set_initial_squares()
+                        game.next_turn()
         
 
                 # exit the application

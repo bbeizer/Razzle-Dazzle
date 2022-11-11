@@ -11,10 +11,10 @@ class Board:
     def __init__(self):
         self.squares = []
         self.squares = [[0,0,0,0,0,0,0,0,0] for col in range(COLUMNS)]
-
         self._create()
         self._add_pieces('white')
         self._add_pieces('black')
+        self.move_made = False
 
     def _create(self):  
         for row in range(ROWS):
@@ -43,8 +43,10 @@ class Board:
         # move the piece
         if final != piece.initial_square:
             piece.moved = True
+            self.move_made = True
         else:
             piece.moved = False
+            self.move_made = False
         # clear valid moves for piece
         piece.clear_moves()
 
