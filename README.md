@@ -13,6 +13,10 @@ back rank with the ball wins
 
 <img width="795" alt="Screen Shot 2022-11-27 at 1 54 26 PM" src="https://user-images.githubusercontent.com/89622436/204154496-3ba66a06-13f8-4ef6-9565-ec5276c0cdfa.png">
 
-# White attempting to Pass with unhighlighted piece 
+# White attempting to Pass with the unhighlighted piece 
 
 <img width="794" alt="Screen Shot 2022-11-27 at 1 54 35 PM" src="https://user-images.githubusercontent.com/89622436/204154573-d65b41ab-609f-4607-a939-fab6fae9c153.png">
+
+# White Winning
+
+<img width="798" alt="Screen Shot 2022-11-27 at 1 56 21 PM" src="https://user-images.githubusercontent.com/89622436/204154727-610492f9-5931-498f-a192-0acc6aa0d385.png">
