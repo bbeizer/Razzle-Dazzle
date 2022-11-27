@@ -1,9 +1,14 @@
 # Razzle-Dazzle
 
 This is a game I made up. Each side has 4 pieces. All of the pieces move like knights and one piece contains a metal ball
-The piece with the ball is not able to move but it is able to pass the ball. That piece can pass the ball other pieces that are
-laterally or diagonally in range as long as the oponnent's piece is not blocking the path. The first player to get one of their piece on the opponents
-back rank with the ball wins
+The piece with the ball is not able to move but it is able to pass the ball. That piece can pass the ball to other pieces that are
+laterally or diagonally in range as long as the oponnent's piece is not blocking the path. On a given turn, a player is able to move only one piece at a time, but is able to pass the ball to any piece it is able to pass to. The player must end their turn by pressing the key "n" to surrender their turn to the other player. The first player to get one of their piece with a ball on the opponents
+back rank wins. to reset a game press the button "r"
+
+# What you need to Download
+  ´• pygame
+   • pycharm
+   on pycharm to get the game to work, run the game with the play button on main.py
 
 # Initial Setup
 
@@ -23,4 +28,4 @@ back rank with the ball wins
 
 # Bugs/Future Improvement
 
-I wish I could network the code and have the game running on a server and have user clients interact with the game on the server
+Currently you can only play the game and make moves for each side on 1 computer. Ideally I would network the game in way where 2 clients are able to access the game on a remote server from their own devices. Each client would make moves which would alter the piece/ball configuration on the board on the server and the server would their relay the new board configuration onto the clients.
