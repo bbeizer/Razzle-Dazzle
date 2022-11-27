@@ -15,8 +15,12 @@ back rank with the ball wins
 
 # White attempting to Pass with the unhighlighted piece 
 
-<img width="794" alt="Screen Shot 2022-11-27 at 1 54 35 PM" src="https://user-images.githubusercontent.com/89622436/204154573-d65b41ab-609f-4607-a939-fab6fae9c153.png">
+<img width="793" alt="Screen Shot 2022-11-27 at 2 07 49 PM" src="https://user-images.githubusercontent.com/89622436/204154934-2ce3f169-9b69-4e18-ba5a-04fb0571005f.png">
 
 # White Winning
 
 <img width="798" alt="Screen Shot 2022-11-27 at 1 56 21 PM" src="https://user-images.githubusercontent.com/89622436/204154727-610492f9-5931-498f-a192-0acc6aa0d385.png">
+
+# Bugs/Future Improvement
+
+I wish I could network the code and have the game running on a server and have user clients interact with the game on the server
