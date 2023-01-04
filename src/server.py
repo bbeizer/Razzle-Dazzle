@@ -1,5 +1,7 @@
 import socket
 from _thread import *
+from board import Board
+import pickle
 
 port = 5555
 
@@ -14,10 +16,14 @@ except socket.error as e:
 
 s.listen(2)
 print("Waiting for a connection, Server Started")
-
+current_id = "White"
 
 def threaded_client(conn):
-    conn.send(str.encode("Connected"))
+    global current_id
+    board = Board()
+    data_string = pickle.dumps(board)
+    conn.send(data_string)
+    current_id = "Black"
     reply = ""
     while True:
         try:
@@ -28,6 +34,11 @@ def threaded_client(conn):
                 print("Disconnected")
                 break
             else:
+                if reply.count("White") == 1:
+                    nid = "Black"
+                else:
+                    nid = "White"
+
                 print("Received: ", reply)
                 print("Sending: ", reply)
                 
@@ -44,5 +55,4 @@ def threaded_client(conn):
 while True:
     conn, addr = s.accept()
     print("Connected to:", addr)
-
     start_new_thread(threaded_client, (conn,))

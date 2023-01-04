@@ -1,3 +1,4 @@
+from ipaddress import NetmaskValueError
 import socket
 import pickle
 
@@ -17,23 +18,15 @@ class Network:
     def disconnect(self):
         self.client.close()
 
-    def send(self, data, pick=False):
+    def send(self, message):
         """
         :param data: str
         :return: str
         """
-        try:
-            if pick:
-                self.client.send(pickle.dumps(data))
-            else:
-                self.client.send(str.encode(data))
-            reply = self.client.recv(4096*8)
-            try:
-                reply = pickle.loads(reply)
-            except Exception as e:
-                print(e)
-            
-        except socket.error as e:
-            print(e)
-    
-        return reply
+        self.client.send(message.encode())
+        data = self.client.recv(1024).decode()  # receive response
+        print('Received from server: ' + data)  # show in terminal
+
+n = Network()
+n.send("hello")
+print(n.board.squares[0][3].piece)
