@@ -16,6 +16,15 @@ class Game:
         self.font = pygame.font.Font(None, 100)
 
     #show methods
+
+    def show_menu(self, screen):
+        screen.fill((128,128,128))
+        font = pygame.font.SysFont("comicsans", 80)
+        title = font.render("Online Razzle Dazzle", 1, (0,128,0))
+        screen.blit(title, (WIDTH/2-title.get_width()/2,400))
+        pygame.display.update()
+
+
     def show_bg(self, surface):
         for row in range(ROWS):
             for col in range(COLUMNS):

@@ -1,3 +1,4 @@
+from lib2to3 import pygram
 import pygame 
 import sys
 from a_pass import APass
@@ -14,6 +15,22 @@ class Main:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption('Razzle Dazzle')
         self.game = Game()
+
+    def menu_screen(self):
+        run = True
+        game = self.game
+        screen = self.screen
+        while run == True:
+            game.show_menu(screen)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    run = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    run = False
+        
+        main.mainloop()
+
 
     def mainloop(self):
         
@@ -160,4 +177,4 @@ class Main:
 
 
 main = Main()
-main.mainloop()
+main.menu_screen()
