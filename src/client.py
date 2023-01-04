@@ -32,9 +32,8 @@ class Network:
                 reply = pickle.loads(reply)
             except Exception as e:
                 print(e)
-
+            
         except socket.error as e:
             print(e)
-
-
+    
         return reply

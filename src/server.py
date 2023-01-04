@@ -1,10 +1,11 @@
 import socket
 from _thread import *
 
-server = "192.168.1.7"
 port = 5555
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server = "localhost"
+server_ip = socket.gethostbyname(server)
 
 try:
     s.bind((server, port))
