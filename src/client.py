@@ -26,7 +26,3 @@ class Network:
         self.client.send(message.encode())
         data = self.client.recv(1024).decode()  # receive response
         print('Received from server: ' + data)  # show in terminal
-
-n = Network()
-n.send("hello")
-print(n.board.squares[0][3].piece)

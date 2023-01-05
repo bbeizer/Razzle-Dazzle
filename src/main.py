@@ -1,12 +1,15 @@
-from lib2to3 import pygram
+from tkinter import N
 import pygame 
 import sys
+import pickle
 from a_pass import APass
 from const import *
 from game import Game
 from piece import Piece 
 from square import Square
 from move import Move
+from client import Network
+
 
 class Main:
     
@@ -15,6 +18,7 @@ class Main:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption('Razzle Dazzle')
         self.game = Game()
+        self.board = self.game.board
 
     def menu_screen(self):
         run = True
@@ -27,11 +31,15 @@ class Main:
                     pygame.quit()
                     run = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.board = Main.connect()
                     run = False
-        
-        main.mainloop()
+                    main.mainloop()
 
-
+    def connect():
+        global n 
+        n = Network()
+        return n.board
+    
     def mainloop(self):
         
         game = self.game

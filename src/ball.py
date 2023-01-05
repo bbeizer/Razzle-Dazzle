@@ -9,7 +9,7 @@ class Ball:
         self.passes = []
     
     def set_texture(self, size=80):
-        self.texture = os.path.join(f'src/assets/images/img-{size}px/metal_ball.png')
+        self.texture = os.path.join(f'assets/images/img-{size}px/metal_ball.png')
 
     
     # clears the balls potential passes

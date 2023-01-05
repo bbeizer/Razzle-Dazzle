@@ -24,25 +24,27 @@ def threaded_client(conn):
     data_string = pickle.dumps(board)
     conn.send(data_string)
     current_id = "Black"
-    reply = ""
     while True:
         try:
-            data = conn.recv(2048)
-            reply = data.decode("utf-8")
+            d = conn.recv(8192 * 3)
+            data = d.decode("utf-8")
 
-            if not data:
-                print("Disconnected")
+            if not d:
+                print("Goodbye")
                 break
             else:
-                if reply.count("White") == 1:
-                    nid = "Black"
-                else:
-                    nid = "White"
+                if data == "winner b":
+                    board.winner = "b"
+                    print("[GAME] Player b won in game")
+                if data == "winner w":
+                    board.winner = "w"
+                    print("[GAME] Player w won in game")
 
-                print("Received: ", reply)
-                print("Sending: ", reply)
-                
-            conn.sendall(str.encode(reply))
+                if data == "update moves":
+                    print("board will")
+
+            sendData = pickle.dumps(board)
+            conn.sendall(str.encode(sendData))
         except:
             print("")
             break
