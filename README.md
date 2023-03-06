@@ -1,9 +1,9 @@
 # Razzle-Dazzle
 
-This is a game I made up. Each side has 4 pieces. All of the pieces move like knights and one piece contains a metal ball
+This is a game I created. Each side has 4 pieces. All of the pieces move like knights in Chess, one of which contains a metal ball.
 The piece with the ball is not able to move but it is able to pass the ball. That piece can pass the ball to other pieces that are
 laterally or diagonally in range as long as the oponnent's piece is not blocking the path. On a given turn, a player is able to move only one piece at a time, but is able to pass the ball to any piece it is able to pass to. The player must end their turn by pressing the key "n" to surrender their turn to the other player. The first player to get one of their piece with a ball on the opponents
-back rank wins. to reset a game press the button "r"
+back rank wins. To reset the game press the button "r".
 
 # What you need to Download
   ´• pygame
