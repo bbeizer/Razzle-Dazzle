@@ -7,8 +7,10 @@ back rank wins. To reset the game press the button "r".
 
 # What you need to Download
   ´• pygame
+  
    • vscode
-   on vscode to get the game to work, run the game with the play button on main.py
+   
+   • to get the game to work, run the game with the play button on main.py
 
 # Initial Setup
 
