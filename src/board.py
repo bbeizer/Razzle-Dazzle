@@ -148,7 +148,7 @@ class Board:
                             # append new valid move
                             piece.add_move(move)
         
-        # takes pieces that move in a streight line and evaluates potential moves
+        # takes pieces that move in a straight line and evaluates potential moves
         # will use this is I decide to allow user to change what kind of piece plays in 
         # the game
         def straightline_moves(incrs):
