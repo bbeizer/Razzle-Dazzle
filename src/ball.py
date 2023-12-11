@@ -8,6 +8,11 @@ class Ball:
         self.texture_rect = texture_rect
         self.passes = []
     
+    def to_dict(self):
+        return {
+            "passes": [a_pass.to_dict() for a_pass in self.passes]
+        }
+
     def set_texture(self, size=80):
         self.texture = os.path.join(f'assets/images/img-{size}px/metal_ball.png')
 

@@ -1,10 +1,13 @@
 class APass:
-
     def __init__(self, initial, final):
-        #initial and final are squares
         self.initial = initial
         self.final = final
-        pass
 
     def __eq__(self, other):
         return self.initial == other.initial and self.final == other.final
+
+    def to_dict(self):
+        return {
+            "initial": self.initial.to_dict(),
+            "final": self.final.to_dict()
+        }

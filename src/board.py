@@ -9,8 +9,7 @@ from piece import *
 class Board:
   
     def __init__(self):
-        self.squares = []
-        self.squares = [[0,0,0,0,0,0,0,0,0] for col in range(COLUMNS)]
+        self.squares = [[Square(row, col) for col in range(COLUMNS)] for row in range(ROWS)]
         self._create()
         self._add_pieces('White')
         self._add_pieces('Black')
@@ -204,7 +203,11 @@ class Board:
                 (0, -1) # left
             ])
 
-
+    def to_dict(self):
+        return {
+            "squares": [[square.to_dict() for square in row] for row in self.squares],
+            "move_made": self.move_made
+        }
 
 
     

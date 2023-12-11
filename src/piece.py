@@ -14,6 +14,15 @@ class Piece:
 		self.texture_rect = texture_rect
 		pieces.append(self)
 
+	def to_dict(self):
+		return {
+			"name": self.name,
+			"color": self.color,
+			"ball": self.ball.to_dict() if self.ball else None,
+			"initial_square": self.initial_square.to_dict(),
+			"current_square": self.current_square.to_dict(),
+		}
+
 	def set_texture(self, size=80):
 		self.texture = os.path.join(f'assets/images/img-{size}px/{self.color}_piece.png')
     
@@ -40,20 +49,36 @@ class Knight(Piece):
 	def __init__(self, color, current_square, ball):
 		super().__init__('Knight', color, current_square, ball)
 
+	def to_dict(self):
+		knight_dict = super().to_dict()
+		return knight_dict 
+
 class Bishop(Piece):
 
 	def __init__(self, color):
 		super().__init__('Bishop', color)
 
+	def to_dict(self):
+		bishop_dict = super().to_dict()
+		return bishop_dict
+
 class Rook(Piece):
 
 	def __init__(self, color):
 		super().__init__('Rook', color)
+		
+	def to_dict(self):
+		rook_dict = super().to_dict()
+		return rook_dict
 
 class Queen(Piece):
 
 	def __init__(self, color, ball):
 		super().__init__('Queen', color)
+
+	def to_dict(self):
+		queen_dict = super().to_dict()
+		return queen_dict
 
 
 	
