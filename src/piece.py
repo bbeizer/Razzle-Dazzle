@@ -5,8 +5,13 @@ pieces = []
 
 class Piece:
     def __init__(
-        self, name, color, current_square, ball=None, texture=None, texture_rect=None
-    ):
+            self,
+            name,
+            color,
+            current_square,
+            ball=None,
+            texture=None,
+            texture_rect=None):
         self.name = name
         self.color = color
         self.ball = ball

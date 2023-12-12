@@ -83,7 +83,8 @@ class Main:
                                     or board.move_made == False
                                     and piece.moved == False
                                 ):
-                                    board.calc_moves(piece, clicked_row, clicked_col)
+                                    board.calc_moves(
+                                        piece, clicked_row, clicked_col)
                                     dragger.save_initial(event.pos)
                                     dragger.drag_piece(piece)
                                     # show methods
@@ -92,12 +93,12 @@ class Main:
                                     renderer.show_pieces(screen, game)
                                     renderer.show_ball(screen, game)
                                     renderer.show_win(
-                                        screen, game.current_player, did_win, game
-                                    )
+                                        screen, game.current_player, did_win, game)
                             # move the ball
                             else:
                                 ball = piece.ball
-                                board.calc_passes(piece, clicked_row, clicked_col)
+                                board.calc_passes(
+                                    piece, clicked_row, clicked_col)
                                 dragger.save_initial(event.pos)
                                 dragger.drag_ball(ball)
                                 # show methods
@@ -132,7 +133,8 @@ class Main:
                         release_row = dragger.mouseY // SQSIZE
                         release_col = dragger.mouseX // SQSIZE
                         # create possible move / pass squares
-                        initial = Square(dragger.initial_row, dragger.initial_col)
+                        initial = Square(
+                            dragger.initial_row, dragger.initial_col)
                         final = Square(release_row, release_col)
                         # if the dragger has a piece execute the if
                         if dragger.piece is not None:

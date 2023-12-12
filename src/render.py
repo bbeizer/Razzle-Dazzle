@@ -106,7 +106,8 @@ class Render:
                                 col * SQSIZE + SQSIZE // 2,
                                 row * SQSIZE + SQSIZE // 2,
                             )
-                            piece.ball.texture_rect = img.get_rect(center=img_center)
+                            piece.ball.texture_rect = img.get_rect(
+                                center=img_center)
                             surface.blit(img, piece.ball.texture_rect)
 
     def show_win(self, surface, color, did_win, game):

@@ -24,15 +24,23 @@ class Board:
 
     def _add_pieces(self, color):
         if color == "White":
-            self.squares[7][2] = Square(7, 2, Knight(color, Square(7, 2), None))
-            self.squares[7][3] = Square(7, 3, Knight(color, Square(7, 3), Ball()))
-            self.squares[7][4] = Square(7, 4, Knight(color, Square(7, 4), None))
-            self.squares[7][5] = Square(7, 5, Knight(color, Square(7, 5), None))
+            self.squares[7][2] = Square(
+                7, 2, Knight(color, Square(7, 2), None))
+            self.squares[7][3] = Square(
+                7, 3, Knight(color, Square(7, 3), Ball()))
+            self.squares[7][4] = Square(
+                7, 4, Knight(color, Square(7, 4), None))
+            self.squares[7][5] = Square(
+                7, 5, Knight(color, Square(7, 5), None))
         else:
-            self.squares[0][2] = Square(0, 2, Knight(color, Square(0, 2), None))
-            self.squares[0][3] = Square(0, 3, Knight(color, Square(0, 3), None))
-            self.squares[0][4] = Square(0, 4, Knight(color, Square(0, 4), Ball()))
-            self.squares[0][5] = Square(0, 5, Knight(color, Square(0, 5), None))
+            self.squares[0][2] = Square(
+                0, 2, Knight(color, Square(0, 2), None))
+            self.squares[0][3] = Square(
+                0, 3, Knight(color, Square(0, 3), None))
+            self.squares[0][4] = Square(
+                0, 4, Knight(color, Square(0, 4), Ball()))
+            self.squares[0][5] = Square(
+                0, 5, Knight(color, Square(0, 5), None))
 
     def move(self, piece, move):
         initial = move.initial
@@ -101,7 +109,8 @@ class Board:
                             else:
                                 ball = piece.ball
                                 initial = Square(row, col)
-                                final = Square(possible_pass_row, possible_pass_col)
+                                final = Square(
+                                    possible_pass_row, possible_pass_col)
                                 a_pass = APass(initial, final)
                                 ball.add_pass(a_pass)
                     else:
@@ -152,7 +161,8 @@ class Board:
                         ].is_empty():
                             # create squares of new move
                             initial = Square(row, col)
-                            final = Square(possible_move_row, possible_move_col)
+                            final = Square(
+                                possible_move_row, possible_move_col)
                             # creating move
                             move = Move(initial, final)
                             # append new valid move
