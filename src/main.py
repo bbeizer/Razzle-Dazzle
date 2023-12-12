@@ -25,7 +25,7 @@ class Main:
         run = True
         game = self.game
         screen = self.screen
-        while run == True:
+        while run:
             game.show_menu(screen)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -53,7 +53,7 @@ class Main:
             renderer.show_bg(screen, game)
 
             # show passes or moves depending on what the dragger has
-            if dragger.piece != None:
+            if dragger.piece is not None:
                 renderer.show_moves(screen, game)
             else:
                 renderer.show_passes(screen, game)
@@ -78,8 +78,8 @@ class Main:
                             # if piece doesn't have ball, move the piece
                             if piece.has_ball() == False:
                                 if (
-                                    board.move_made == True
-                                    and piece.moved == True
+                                    board.move_made
+                                    and piece.moved
                                     or board.move_made == False
                                     and piece.moved == False
                                 ):
@@ -115,7 +115,7 @@ class Main:
                         # show methods
                         renderer.show_bg(screen, game)
 
-                        if dragger.piece != None:
+                        if dragger.piece is not None:
                             renderer.show_moves(screen, game)
                         else:
                             renderer.show_passes(screen, game)
@@ -135,7 +135,7 @@ class Main:
                         initial = Square(dragger.initial_row, dragger.initial_col)
                         final = Square(release_row, release_col)
                         # if the dragger has a piece execute the if
-                        if dragger.piece != None:
+                        if dragger.piece is not None:
                             move = Move(initial, final)
                             if board.valid_move(dragger.piece, move):
                                 board.move(dragger.piece, move)
@@ -188,7 +188,7 @@ class Main:
                         board = self.game.board
                         dragger = self.game.dragger
                     elif event.key == pygame.K_n:
-                        if did_win == False:
+                        if not did_win:
                             board.move_made = False
                             Piece.set_initial_squares()
                             game.next_turn()

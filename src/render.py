@@ -110,7 +110,7 @@ class Render:
                             surface.blit(img, piece.ball.texture_rect)
 
     def show_win(self, surface, color, did_win, game):
-        if did_win == True:
+        if did_win:
             msg = self.font.render(color + " Wins!", True, "#000000")
             rect = (200, 400, 400, 100)
             pygame.draw.rect(surface, "#FFFFFF", rect)

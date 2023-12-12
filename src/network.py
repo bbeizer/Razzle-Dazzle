@@ -14,7 +14,7 @@ class Network:
         try:
             self.client.connect(self.addr)
             return self.client.recv(2048).decode()
-        except:
+        except BaseException:
             pass
 
     def send(self, data):

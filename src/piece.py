@@ -43,7 +43,7 @@ class Piece:
         self.passes = []
 
     def has_ball(self):
-        return self.ball != None
+        return self.ball is not None
 
     @staticmethod
     def set_initial_squares():

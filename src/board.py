@@ -88,7 +88,8 @@ class Board:
                         if self.squares[possible_pass_row][
                             possible_pass_col
                         ].has_piece():
-                            # if there is an opponent piece is blocking a pass, you move on to another potential pass
+                            # if there is an opponent piece is blocking a pass,
+                            # you move on to another potential pass
                             if (
                                 self.squares[possible_pass_row][
                                     possible_pass_col
@@ -125,7 +126,7 @@ class Board:
         """
 
         def knight_moves():
-            if piece.moved == True:
+            if piece.moved:
                 initial = Square(row, col)
                 home_row, home_col = piece.initial_square.row, piece.initial_square.col
                 home_square = Square(home_row, home_col)
