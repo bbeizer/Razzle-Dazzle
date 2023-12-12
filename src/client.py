@@ -1,6 +1,7 @@
 import socket
 import json
 
+
 class Client:
     def __init__(self):
         print("Client is starting...")
@@ -15,7 +16,7 @@ class Client:
             print("Attempting to connect to the server...")
             self.client.connect(self.addr)
             print("Connected to server, waiting for data...")
-            data = self.client.recv(4096*8).decode()
+            data = self.client.recv(4096 * 8).decode()
             print("Data received from server:", data)
             return json.loads(data)
         except Exception as e:
@@ -39,11 +40,12 @@ class Client:
                 self.client.send(message.encode())
 
             response = self.client.recv(1024).decode()
-            print('Received from server:', response)
+            print("Received from server:", response)
             return json.loads(response)
         except Exception as e:
             print(f"Error sending/receiving data: {e}")
             return None
+
 
 if __name__ == "__main__":
     client = Client()

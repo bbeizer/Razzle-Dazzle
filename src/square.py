@@ -24,5 +24,5 @@ class Square:
         return {
             "row": self.row,
             "col": self.col,
-            "piece": self.piece.to_dict() if self.piece else None
+            "piece": self.piece.to_dict() if self.piece else None,
         }

@@ -16,9 +16,12 @@ except socket.error as e:
 s.listen(2)
 print("Waiting for a connection, Server Started")
 
+
 def threaded_client(conn):
     board = Board()  # Assuming Board() can be converted to a JSON-serializable format
-    conn.send(json.dumps(board.to_dict()).encode())  # Sending the board as a JSON string
+    conn.send(
+        json.dumps(board.to_dict()).encode()
+    )  # Sending the board as a JSON string
 
     while True:
         try:
@@ -40,6 +43,7 @@ def threaded_client(conn):
     print("Lost connection")
     conn.close()
 
+
 def process_client_data(data, board):
     if data == "winner b":
         board.winner = "b"
@@ -51,6 +55,7 @@ def process_client_data(data, board):
         print("Updating board moves")
         # Add logic to update board moves
     # Add additional conditions as needed
+
 
 while True:
     conn, addr = s.accept()

@@ -7,7 +7,4 @@ class APass:
         return self.initial == other.initial and self.final == other.final
 
     def to_dict(self):
-        return {
-            "initial": self.initial.to_dict(),
-            "final": self.final.to_dict()
-        }
+        return {"initial": self.initial.to_dict(), "final": self.final.to_dict()}

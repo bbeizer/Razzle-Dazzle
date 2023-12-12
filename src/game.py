@@ -6,10 +6,10 @@ from config import Config
 
 from const import *
 
-class Game:
 
+class Game:
     def __init__(self):
-        self.current_player = 'White'
+        self.current_player = "White"
         self.board = Board()
         self.dragger = Dragger()
         self.config = Config()
@@ -22,10 +22,10 @@ class Game:
             self.config.pass_sound.play()
 
     def next_turn(self):
-        if self.current_player == 'White':
-            self.current_player = 'Black'
+        if self.current_player == "White":
+            self.current_player = "Black"
         else:
-            self.current_player = 'White'
+            self.current_player = "White"
 
     def reset(self):
         self.__init__()
