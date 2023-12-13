@@ -2,14 +2,14 @@ from tkinter import N
 import pygame
 import sys
 import pickle
-from a_pass import APass
-from const import *
-from game import Game
-from piece import Piece
-from square import Square
-from move import Move
-from client import Network
-from render import Render
+from game_logic.a_pass import APass
+from shared.const import *
+from game_logic.game import Game
+from game_logic.piece import Piece
+from game_logic.square import Square
+from game_logic.move import Move
+from client.client import Network
+from client.render import Render
 
 
 class Main:
