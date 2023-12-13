@@ -3,7 +3,6 @@ from const import *
 
 
 class Dragger:
-    
     def __init__(self):
         self.piece = None
         self.ball = None
@@ -12,31 +11,30 @@ class Dragger:
         self.mouseY = 0
         self.initial_row = 0
         self.initial_col = 0
-    
-    # blit methods 
+
+    # blit methods
     def update_blit(self, surface):
-        #texture
+        # texture
         # for piece
-        if self.piece != None:
+        if self.piece is not None:
             self.piece.set_texture(size=80)
-            #img
+            # img
             img = pygame.image.load(self.piece.texture)
-            #rect
+            # rect
             img_center = (self.mouseX, self.mouseY)
             self.piece.texture_rect = img.get_rect(center=img_center)
             surface.blit(img, self.piece.texture_rect)
-        # for ball 
+        # for ball
         else:
             self.ball.set_texture(size=80)
-            #img
+            # img
             img = pygame.image.load(self.ball.texture)
-            #rect
+            # rect
             img_center = (self.mouseX, self.mouseY)
             self.ball.texture_rect = img.get_rect(center=img_center)
-            surface.blit(img, self.ball.texture_rect) 
+            surface.blit(img, self.ball.texture_rect)
 
-    
-    #other methods
+    # other methods
     def update_mouse(self, pos):
         self.mouseX, self.mouseY = pos
 
@@ -59,5 +57,3 @@ class Dragger:
     def undrag_ball(self):
         self.ball = None
         self.dragging = False
-
-
